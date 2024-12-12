@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en-us">
+<html lang="en-zh">
   <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     
-    <title>分布式文件系统 - Gluster | My New Hugo Site</title>
+    <title>分布式文件系统 - Gluster | 一只小菜鸡</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1">
     <meta name="description" content="简介
 概述
@@ -49,11 +49,11 @@ volume create: test-volume: success: please start the volume to access data
     
 
     
-      <link rel="canonical" href="http://localhost:1313/posts/my-first-post/">
+      <link rel="canonical" href="http://localhost:1313/posts/glusterfs/">
     
 
-    <meta property="og:url" content="http://localhost:1313/posts/my-first-post/">
-  <meta property="og:site_name" content="My New Hugo Site">
+    <meta property="og:url" content="http://localhost:1313/posts/glusterfs/">
+  <meta property="og:site_name" content="一只小菜鸡">
   <meta property="og:title" content="分布式文件系统 - Gluster">
   <meta property="og:description" content="简介 概述 GlusterFS系统是一个可扩展的网络文件系统，相比其他分布式文件系统，GlusterFS具有高扩展性、高可用性、高性能、可横向扩展等特点，并且其没有元数据服务器的设计，让整个服务没有单点故障的隐患。
 当客户端访问GlusterFS存储时，首先程序通过访问挂载点的形式读写数据，对于用户和程序而言，集群文件系统是透明的，用户和程序根本感觉不到文件系统是本地还是在远程服务器上。读写操作将会被交给VFS(Virtual File System)来处理，VFS会将请求交给FUSE内核模块，而FUSE又会通过设备/dev/fuse将数据交给GlusterFS Client。最后经过GlusterFS Client的计算，并最终经过网络将请求或数据发送到GlusterFS Server上。
@@ -67,7 +67,7 @@ GlusterFS 集群的模式只数据在集群中的存放结构，类似于磁盘�
 1、分布式卷（Distributed Volume） 文件没有分片，文件根据hash算法写入各个节点的硬盘上，优点是容量大，读/写性能好，缺点是没冗余。不指定卷类型，默认是分布式卷。
 分布式卷创建指令如下：
 $ gluster volume create NEW-VOLNAME [transport [tcp | rdma | tcp,rdma]] NEW-BRICK... volume create: test-volume: success: please start the volume to access data 显示卷信息：">
-  <meta property="og:locale" content="en_us">
+  <meta property="og:locale" content="en_zh">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2024-12-12T15:45:48+08:00">
@@ -117,7 +117,7 @@ $ gluster volume create NEW-VOLNAME [transport [tcp | rdma | tcp,rdma]] NEW-BRIC
   <div class="flex-l justify-between items-center center">
     <a href="/" class="f3 fw2 hover-white no-underline white-90 dib">
       
-        My New Hugo Site
+        一只小菜鸡
       
     </a>
     <div class="flex-l items-center">
@@ -169,7 +169,7 @@ $ gluster volume create NEW-VOLNAME [transport [tcp | rdma | tcp,rdma]] NEW-BRIC
 <p>GlusterFS 集群的模式只数据在集群中的存放结构，类似于磁盘阵列中的级别。</p>
 <h3 id="1分布式卷distributed-volume">1、分布式卷（Distributed Volume）</h3>
 <p>文件没有分片，文件根据hash算法写入各个节点的硬盘上，优点是容量大，读/写性能好，缺点是没冗余。不指定卷类型，默认是分布式卷。</p>
-<p><img src="imgs/Untitled.png" alt="Untitled"></p>
+<p><img src="https://mos-bj-exter.intra.mlamp.cn/imgs/Untitled.png" alt="Untitled"></p>
 <p>分布式卷创建指令如下：</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ gluster volume create NEW-VOLNAME <span style="color:#f92672">[</span>transport <span style="color:#f92672">[</span>tcp | rdma | tcp,rdma<span style="color:#f92672">]]</span> NEW-BRICK...
 </span></span><span style="display:flex;"><span>volume create: test-volume: success: please start the volume to access data
@@ -187,7 +187,7 @@ Brick3: server3:/exp3
 Brick4: server4:/exp4
 </code></pre><h3 id="2复制卷replicated-volume">2、复制卷（Replicated Volume）</h3>
 <p>复制卷在创建时可指定复本的数量，通常为2或者3，复本会完整的备份在不同卷（brick）上，当其中一台服务器失效后，可以从另一台服务器读取数据，因此复制GlusterFS卷提高了数据可靠性的同事，还提供了数据冗余的功能。</p>
-<p><img src="imgs/Untitled%201.png" alt="Untitled"></p>
+<p><img src="https://mos-bj-exter.intra.mlamp.cn/imgs/Untitled%201.png" alt="Untitled"></p>
 <p>复制卷创建指令如下：</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>gluster volume create NEW-VOLNAME <span style="color:#f92672">[</span>replica COUNT<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>transport <span style="color:#f92672">[</span>tcp |rdma | tcp,rdma<span style="color:#f92672">]]</span> NEW-BRICK...
 </span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>gluster volume create test-volume replica <span style="color:#ae81ff">3</span> transport tcp server1:/exp1 server2:/exp2 server3:/exp3
@@ -200,19 +200,19 @@ Brick4: server4:/exp4
 <p>优点：高可靠，读性能高</p>
 <p>缺点：牺牲存储空间，写性能差</p>
 <p>brick数量是replica的倍数</p>
-<p><img src="imgs/Untitled%202.png" alt="Untitled"></p>
+<p><img src="https://mos-bj-exter.intra.mlamp.cn/imgs/Untitled%202.png" alt="Untitled"></p>
 <p>分布式复制卷创建卷指令如下：</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>gluster volume create NEW-VOLNAME <span style="color:#f92672">[</span>replica COUNT<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>transport <span style="color:#f92672">[</span>tcp | rdma | tcp,rdma<span style="color:#f92672">]]</span> NEW-BRICK...
 </span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>gluster volume create test-volume replica <span style="color:#ae81ff">3</span> transport tcp server1:/exp1 server2:/exp2 server3:/exp3 server4:/exp4 server5:/exp5 server6:/exp6
 </span></span></code></pre></div><h3 id="4条带卷striped-volume">4、条带卷（Striped Volume）</h3>
 <p>文件分片均匀写在各个节点的硬盘上的，冗余卷的数量决定了最多可以故障的磁盘数，纠删码模式。分片随机读写可能会导致硬盘IOPS饱和。</p>
-<p><img src="imgs/Untitled%203.png" alt="Untitled"></p>
+<p><img src="https://mos-bj-exter.intra.mlamp.cn/imgs/Untitled%203.png" alt="imgs"></p>
 <p>条带卷创建卷指令如下：</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>gluster volume create test-volume <span style="color:#f92672">[</span>disperse <span style="color:#f92672">[</span>&lt;COUNT&gt;<span style="color:#f92672">]]</span> <span style="color:#f92672">[</span>disperse-data &lt;COUNT&gt;<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>redundancy &lt;COUNT&gt;<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>transport tcp | rdma | tcp,rdma<span style="color:#f92672">]</span> &lt;NEW-BRICK&gt;
 </span></span><span style="display:flex;"><span>gluster volume create test-volume disperse <span style="color:#ae81ff">3</span> redundancy <span style="color:#ae81ff">1</span> server1:/exp1 server2:/exp2 server3:/exp3
 </span></span></code></pre></div><h3 id="5分布式条带卷distributed-striped-volume">5、分布式条带卷（Distributed Striped Volume）</h3>
 <p>当单个文件的体型十分巨大，客户端数量更多时，条带卷已经无法满足需求，此时将分布式与条带化结合起来是一个比较好的选择。其性能与服务器数量有关。</p>
-<p><img src="imgs/Untitled%204.png" alt="Untitled"></p>
+<p><img src="https://mos-bj-exter.intra.mlamp.cn/imgs/Untitled%204.png" alt="Untitled"></p>
 <p>分布式条带卷创建卷指令如下：</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>gluster volume create <span style="color:#f92672">[</span>disperse <span style="color:#f92672">[</span>&lt;COUNT&gt;<span style="color:#f92672">]]</span> <span style="color:#f92672">[</span>disperse-data &lt;COUNT&gt;<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>redundancy &lt;COUNT&gt;<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>transport tcp | rdma | tcp,rdma<span style="color:#f92672">]</span> &lt;NEW-BRICK&gt;
 </span></span><span style="display:flex;"><span>gluster volume create test-volume disperse <span style="color:#ae81ff">3</span> redundancy <span style="color:#ae81ff">1</span> server1:/exp1 server2:/exp2 server3:/exp3 server4:/exp4 server5:/exp5 server6:/exp6
@@ -286,7 +286,7 @@ Brick4: server4:/exp4
     <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
   <div class="flex justify-between">
   <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="http://localhost:1313/" >
-    &copy;  My New Hugo Site 2024 
+    &copy;  一只小菜鸡 2024 
   </a>
     <div><div class="ananke-socials"></div>
 </div>

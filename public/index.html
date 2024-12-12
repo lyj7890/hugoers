@@ -1,22 +1,22 @@
 <!DOCTYPE html>
-<html lang="en-us">
-  <head>
+<html lang="en-zh">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     
-    <title>My New Hugo Site</title>
+    <title>一只小菜鸡</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1">
     <meta name="description" content="">
     <meta name="generator" content="Hugo 0.140.0-DEV">
     
     
     
-      <meta name="robots" content="index, follow">
+      <meta name="robots" content="noindex, nofollow">
     
     
 
     
-<link rel="stylesheet" href="/ananke/css/main.min.d05fb5f317fcf33b3a52936399bdf6f47dc776516e1692e412ec7d76f4a5faa2.css" >
+<link rel="stylesheet" href="/ananke/css/main.min.css" >
 
 
 
@@ -29,31 +29,29 @@
 
     
     
-      <link href="/index.xml" rel="alternate" type="application/rss+xml" title="My New Hugo Site" />
-      <link href="/index.xml" rel="feed" type="application/rss+xml" title="My New Hugo Site" />
+      <link href="/index.xml" rel="alternate" type="application/rss+xml" title="一只小菜鸡" />
+      <link href="/index.xml" rel="feed" type="application/rss+xml" title="一只小菜鸡" />
       
     
 
     
-      <link rel="canonical" href="https://example.org/">
+      <link rel="canonical" href="http://localhost:1313/">
     
 
-    <meta property="og:url" content="https://example.org/">
-  <meta property="og:site_name" content="My New Hugo Site">
-  <meta property="og:title" content="My New Hugo Site">
-  <meta property="og:locale" content="en_us">
+    <meta property="og:url" content="http://localhost:1313/">
+  <meta property="og:site_name" content="一只小菜鸡">
+  <meta property="og:title" content="一只小菜鸡">
+  <meta property="og:locale" content="en_zh">
   <meta property="og:type" content="website">
 
-  <meta itemprop="name" content="My New Hugo Site">
+  <meta itemprop="name" content="一只小菜鸡">
   <meta itemprop="datePublished" content="2024-12-12T15:45:48+08:00">
   <meta itemprop="dateModified" content="2024-12-12T15:45:48+08:00">
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="My New Hugo Site">
+  <meta name="twitter:title" content="一只小菜鸡">
 
-      
-    
 	
-  </head><body class="ma0 avenir bg-near-white production">
+  </head><body class="ma0 avenir bg-near-white development">
 
     
 
@@ -63,7 +61,7 @@
   <div class="flex-l justify-between items-center center">
     <a href="/" class="f3 fw2 hover-white no-underline white-90 dib">
       
-        My New Hugo Site
+        一只小菜鸡
       
     </a>
     <div class="flex-l items-center">
@@ -78,7 +76,7 @@
 
       <div class="tc-l pv3 ph3 ph4-ns">
         <h1 class="f2 f-subheadline-l fw2 light-silver mb0 lh-title">
-          My New Hugo Site
+          一只小菜鸡
         </h1>
         
       </div>
@@ -103,13 +101,75 @@
     
     
     
+      <div class="pa3 pa4-ns w-100 w-70-ns center">
+        
+        
+            <h1 class="flex-none">
+              Recent Posts
+            </h1>
+          
+
+        
+
+        <section class="w-100 mw8">
+          
+          
+            <div class="relative w-100 mb4">
+              
+<article class="bb b--black-10">
+  <div class="db pv4 ph3 ph0-l no-underline dark-gray">
+    <div class="flex flex-column flex-row-ns">
+      
+      <div class="blah w-100">
+        <h1 class="f3 fw1 athelas mt0 lh-title">
+          <a href="/posts/glusterfs/" class="color-inherit dim link">
+            分布式文件系统 - Gluster
+            </a>
+        </h1>
+        <div class="f6 f5-l lh-copy nested-copy-line-height nested-links">
+          <h1 id="简介">简介</h1>
+<h3 id="概述"><strong>概述</strong></h3>
+<p>GlusterFS系统是一个可扩展的网络文件系统，相比其他分布式文件系统，GlusterFS具有高扩展性、高可用性、高性能、可横向扩展等特点，并且其没有元数据服务器的设计，让整个服务没有单点故障的隐患。</p>
+<p>当客户端访问GlusterFS存储时，首先程序通过访问挂载点的形式读写数据，对于用户和程序而言，集群文件系统是透明的，用户和程序根本感觉不到文件系统是本地还是在远程服务器上。读写操作将会被交给VFS(Virtual File System)来处理，VFS会将请求交给FUSE内核模块，而FUSE又会通过设备/dev/fuse将数据交给GlusterFS Client。最后经过GlusterFS Client的计算，并最终经过网络将请求或数据发送到GlusterFS Server上。</p>
+<h2 id="基础术语"><strong>基础术语</strong></h2>
+<p>Brick: 最基本的存储单元，表示为trusted storage pool中输出的目录，供客户端挂载用。</p>
+<p>Volume: 一个卷。在逻辑上由N个bricks组成。</p>
+<p>FUSE: Unix-like OS上的可动态加载的模块，允许用户不用修改内核即可创建自己的文件系统。</p>
+<p>Glusterd: Gluster management daemon，要在trusted storage pool中所有的服务器上运行。</p>
+<p>POSIX: 一个标准，GlusterFS 兼容。</p>
+<h2 id="卷类型"><strong>卷类型</strong></h2>
+<p>为了满足不同应用对高性能、高可用的需求，GlusterFS 支持 7 种卷，即 distribute卷、stripe卷、replica卷、distribute stripe卷、distribute replica 卷、stripe Replica卷、distribute stripe replica 卷。其实不难看出，GlusterFS 卷类型实际上可以分为 3 种基本卷和 4 种复合卷，每种类型的卷都有其自身的特点和适用场景。</p>
+<p>GlusterFS 集群的模式只数据在集群中的存放结构，类似于磁盘阵列中的级别。</p>
+<h3 id="1分布式卷distributed-volume">1、分布式卷（Distributed Volume）</h3>
+<p>文件没有分片，文件根据hash算法写入各个节点的硬盘上，优点是容量大，读/写性能好，缺点是没冗余。不指定卷类型，默认是分布式卷。</p>
+<p><img src="https://mos-bj-exter.intra.mlamp.cn/imgs/Untitled.png" alt="Untitled"></p>
+<p>分布式卷创建指令如下：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ gluster volume create NEW-VOLNAME <span style="color:#f92672">[</span>transport <span style="color:#f92672">[</span>tcp | rdma | tcp,rdma<span style="color:#f92672">]]</span> NEW-BRICK...
+</span></span><span style="display:flex;"><span>volume create: test-volume: success: please start the volume to access data
+</span></span></code></pre></div><p>显示卷信息：</p>
+        </div>
+          <a href="/posts/glusterfs/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+        
+      </div>
+    </div>
+  </div>
+</article>
+
+            </div>
+          
+        </section>
+
+        
+
+        </div>
+    
   
 
     </main>
     <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
   <div class="flex justify-between">
-  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://example.org/" >
-    &copy;  My New Hugo Site 2024 
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="http://localhost:1313/" >
+    &copy;  一只小菜鸡 2024 
   </a>
     <div><div class="ananke-socials"></div>
 </div>

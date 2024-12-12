@@ -1,12 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>My New Hugo Site</title>
-    <link>https://example.org/</link>
-    <description>Recent content on My New Hugo Site</description>
+    <title>一只小菜鸡</title>
+    <link>http://localhost:1313/</link>
+    <description>Recent content on 一只小菜鸡</description>
     <generator>Hugo</generator>
-    <language>en-us</language>
-    <lastBuildDate></lastBuildDate>
-    <atom:link href="https://example.org/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-zh</language>
+    <lastBuildDate>Thu, 12 Dec 2024 15:45:48 +0800</lastBuildDate>
+    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>分布式文件系统 - Gluster</title>
+      <link>http://localhost:1313/posts/glusterfs/</link>
+      <pubDate>Thu, 12 Dec 2024 15:45:48 +0800</pubDate>
+      <guid>http://localhost:1313/posts/glusterfs/</guid>
+      <description>&lt;h1 id=&#34;简介&#34;&gt;简介&lt;/h1&gt;&#xA;&lt;h3 id=&#34;概述&#34;&gt;&lt;strong&gt;概述&lt;/strong&gt;&lt;/h3&gt;&#xA;&lt;p&gt;GlusterFS系统是一个可扩展的网络文件系统，相比其他分布式文件系统，GlusterFS具有高扩展性、高可用性、高性能、可横向扩展等特点，并且其没有元数据服务器的设计，让整个服务没有单点故障的隐患。&lt;/p&gt;&#xA;&lt;p&gt;当客户端访问GlusterFS存储时，首先程序通过访问挂载点的形式读写数据，对于用户和程序而言，集群文件系统是透明的，用户和程序根本感觉不到文件系统是本地还是在远程服务器上。读写操作将会被交给VFS(Virtual File System)来处理，VFS会将请求交给FUSE内核模块，而FUSE又会通过设备/dev/fuse将数据交给GlusterFS Client。最后经过GlusterFS Client的计算，并最终经过网络将请求或数据发送到GlusterFS Server上。&lt;/p&gt;&#xA;&lt;h2 id=&#34;基础术语&#34;&gt;&lt;strong&gt;基础术语&lt;/strong&gt;&lt;/h2&gt;&#xA;&lt;p&gt;Brick: 最基本的存储单元，表示为trusted storage pool中输出的目录，供客户端挂载用。&lt;/p&gt;&#xA;&lt;p&gt;Volume: 一个卷。在逻辑上由N个bricks组成。&lt;/p&gt;&#xA;&lt;p&gt;FUSE: Unix-like OS上的可动态加载的模块，允许用户不用修改内核即可创建自己的文件系统。&lt;/p&gt;&#xA;&lt;p&gt;Glusterd: Gluster management daemon，要在trusted storage pool中所有的服务器上运行。&lt;/p&gt;&#xA;&lt;p&gt;POSIX: 一个标准，GlusterFS 兼容。&lt;/p&gt;&#xA;&lt;h2 id=&#34;卷类型&#34;&gt;&lt;strong&gt;卷类型&lt;/strong&gt;&lt;/h2&gt;&#xA;&lt;p&gt;为了满足不同应用对高性能、高可用的需求，GlusterFS 支持 7 种卷，即 distribute卷、stripe卷、replica卷、distribute stripe卷、distribute replica 卷、stripe Replica卷、distribute stripe replica 卷。其实不难看出，GlusterFS 卷类型实际上可以分为 3 种基本卷和 4 种复合卷，每种类型的卷都有其自身的特点和适用场景。&lt;/p&gt;&#xA;&lt;p&gt;GlusterFS 集群的模式只数据在集群中的存放结构，类似于磁盘阵列中的级别。&lt;/p&gt;&#xA;&lt;h3 id=&#34;1分布式卷distributed-volume&#34;&gt;1、分布式卷（Distributed Volume）&lt;/h3&gt;&#xA;&lt;p&gt;文件没有分片，文件根据hash算法写入各个节点的硬盘上，优点是容量大，读/写性能好，缺点是没冗余。不指定卷类型，默认是分布式卷。&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://mos-bj-exter.intra.mlamp.cn/imgs/Untitled.png&#34; alt=&#34;Untitled&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;分布式卷创建指令如下：&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;$ gluster volume create NEW-VOLNAME &lt;span style=&#34;color:#f92672&#34;&gt;[&lt;/span&gt;transport &lt;span style=&#34;color:#f92672&#34;&gt;[&lt;/span&gt;tcp | rdma | tcp,rdma&lt;span style=&#34;color:#f92672&#34;&gt;]]&lt;/span&gt; NEW-BRICK...&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;volume create: test-volume: success: please start the volume to access data&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;显示卷信息：&lt;/p&gt;</description>
+    </item>
   </channel>
 </rss>
