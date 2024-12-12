@@ -1,4 +1,13 @@
-baseURL = 'https://example.org/'
+baseURL = 'https://lyj7890.github.io/hugoers/'
 languageCode = 'en-zh'
 title = '一只小菜鸡'
 theme = 'ananke'
+[params]
+  subtitle = 'The Best Widgets on Earth'
+  [params.contact]
+    email = 'info@example.org'
+    phone = '+1 202-555-1212'
+
+[page]
+  nextPrevInSectionSortOrder = 'desc'
+  nextPrevSortOrder = 'desc'
